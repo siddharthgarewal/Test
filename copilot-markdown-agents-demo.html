@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Copilot Markdown Agents — Presentation & Live Demo</title>
+<style>
+:root{--bg:#0b1020;--panel:#141d32;--line:#2a3956;--text:#ecf2ff;--muted:#b2bfd5;--accent:#79dbbd;--blue:#8eb8ff;--warn:#ffd284;--red:#ff9da8}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:17px/1.6 system-ui,-apple-system,Segoe UI,sans-serif}header{border-bottom:1px solid var(--line);padding:18px 5vw;display:flex;justify-content:space-between;gap:16px;align-items:center}header strong{font-size:18px}.badge{color:var(--accent);font-size:13px;text-transform:uppercase;letter-spacing:.12em}button,a.button{border:1px solid var(--line);border-radius:9px;padding:10px 16px;background:#1c2a44;color:var(--text);font:inherit;cursor:pointer;text-decoration:none}button:hover,a.button:hover{border-color:var(--accent)}button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid var(--blue);outline-offset:3px}.primary{background:var(--accent);color:#081811;border-color:var(--accent);font-weight:700}nav{padding:14px 5vw;display:flex;gap:8px;flex-wrap:wrap}nav button{font-size:14px;padding:8px 12px}nav button[aria-current="step"]{border-color:var(--accent);color:var(--accent)}main{max-width:1240px;margin:auto;padding:25px 5vw 70px}.slide[hidden]{display:none}h1{font-size:clamp(34px,5vw,62px);line-height:1.1;letter-spacing:-.035em;margin:15px 0 24px}h2{font-size:clamp(28px,3.4vw,43px);line-height:1.2;margin:10px 0 24px}h3{margin:0 0 10px;font-size:21px}p{margin:10px 0 18px}.lead{font-size:22px;color:var(--muted);max-width:900px}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}.card{border:1px solid var(--line);background:var(--panel);border-radius:16px;padding:22px}.callout{border-left:4px solid var(--accent);background:#142c2d;padding:17px 20px;margin:22px 0;border-radius:0 10px 10px 0}.warning{border-color:var(--warn);background:#30291f}.muted,small{color:var(--muted)}.tag{font-size:13px;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:.07em}.toolbar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:16px 0}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#080e1b;border:1px solid var(--line);padding:18px;border-radius:10px;font:14px/1.65 ui-monospace,SFMono-Regular,Consolas,monospace;max-height:500px;overflow:auto}code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;color:#b9d7ff}.file-label{font-size:14px;overflow-wrap:anywhere;color:var(--accent)}.notes{display:none;border:1px dashed var(--warn);padding:17px 20px;border-radius:12px;margin-top:24px;color:#ffe0a5}.show-notes .notes{display:block}ul,ol{padding-left:24px}li{margin:7px 0}table{border-collapse:collapse;width:100%;font-size:15px}th,td{text-align:left;border-bottom:1px solid var(--line);padding:13px;vertical-align:top}th{color:var(--blue)}.table-wrap{overflow:auto}input{width:100%;background:#080e1b;color:var(--text);border:1px solid var(--line);padding:12px;border-radius:8px;font:inherit}label{display:block;font-weight:600;margin:10px 0}.result{padding:16px;background:#080e1b;border:1px solid var(--line);border-radius:10px;margin-top:16px;min-height:62px}.pass{color:var(--accent)}.fail{color:var(--red)}.result ul{margin:0}.mode-buttons button[aria-pressed="true"]{border-color:var(--accent);background:#193b35}.metric input{min-width:160px;font-size:14px}.sources a{color:var(--blue)}footer{padding:18px 5vw;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:16px}.status{font-size:14px;color:var(--muted)}.toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);background:#e5fff5;color:#0a281f;padding:12px 20px;border-radius:10px;box-shadow:0 8px 25px #0008;z-index:3}.toast:empty{display:none}.flow{display:flex;gap:12px;flex-wrap:wrap;margin:24px 0}.flow span{background:#1a2d43;border:1px solid var(--line);padding:12px 18px;border-radius:30px}@media(max-width:800px){.grid,.cards{grid-template-columns:1fr}header{align-items:flex-start;flex-direction:column}main{padding-top:12px}.lead{font-size:19px}footer{flex-wrap:wrap}}@media print{body{background:white;color:#111;font-size:12pt}header,nav,footer,.toolbar,.toast,button{display:none!important}.slide[hidden],.slide{display:block!important;break-after:page}.card,pre,.callout,.result{background:#f5f5f5;color:#111;border-color:#bbb}.muted,small,code,.file-label,.tag,.lead{color:#333}main{padding:0}.notes{display:block;color:#333;border-color:#aaa}h1{font-size:32pt}h2{font-size:25pt}}
+</style>
+</head>
+<body>
+<header><div><div class="badge">Developer workshop • interactive demo</div><strong>GitHub Copilot: Markdown Agents</strong></div><div class="toolbar"><button id="notes-toggle" aria-pressed="false">Show speaker notes</button><button id="print">Print / Save PDF</button></div></header>
+<nav aria-label="Presentation sections">
+<button data-target="intro" aria-current="step">Start</button><button data-target="concepts">Markdown files</button><button data-target="templates">Agent templates</button><button data-target="playground">Live bug demo</button><button data-target="prompts">Prompt comparison</button><button data-target="usage">Usage worksheet</button><button data-target="wrap">Takeaways & sources</button>
+</nav>
+<main>
+<section class="slide" id="intro">
+<div class="tag">Presentation + practical demonstration</div><h1>The right role.<br>The right context.<br>A verifiable result.</h1>
+<p class="lead">Use Copilot Markdown customization to guide everyday development tasks—and demonstrate ways to avoid unnecessary context and work.</p>
+<div class="callout warning"><strong>Transparency:</strong> This is a standalone teaching demo, not a connection to Copilot. Templates are illustrative. No token savings, billing values, or repository outcomes are pre-measured. Enter only actual observations in the usage worksheet.</div>
+<div class="cards"><div class="card"><h3>Define the role</h3><p>Show a focused development assistant and a review-only assistant.</p></div><div class="card"><h3>Control the task</h3><p>Specify relevant files, acceptance criteria, constraints, and a stopping point.</p></div><div class="card"><h3>Verify the outcome</h3><p>Inspect changes and run regression tests instead of trusting a summary.</p></div></div>
+<div class="flow"><span>Bug report</span><span>→ Focused fix</span><span>→ Regression tests</span><span>→ Review</span></div>
+<aside class="notes"><strong>Opening script:</strong> “Today I’ll show a repeatable development workflow, not just a clever prompt. We’ll look at Markdown configuration, reproduce a validation bug, and compare broad versus scoped requests. The browser demo simulates the application behavior; the actual Copilot interaction happens separately in your IDE.”</aside>
+</section>
+<section class="slide" id="concepts" hidden>
+<div class="tag">Mental model</div><h2>Instructions ≠ agents ≠ prompts</h2>
+<div class="table-wrap"><table><thead><tr><th>Customization</th><th>Location</th><th>Explain it as</th></tr></thead><tbody><tr><td>Repository instructions</td><td><code>.github/copilot-instructions.md</code></td><td>The shared rules</td></tr><tr><td>Scoped instructions</td><td><code>.github/instructions/*.instructions.md</code></td><td>Rules for matching files using <code>applyTo</code></td></tr><tr><td>Custom agent</td><td><code>.github/agents/*.agent.md</code></td><td>The specialist role and its tools</td></tr><tr><td>Prompt file</td><td><code>.github/prompts/*.prompt.md</code></td><td>The reusable, explicitly invoked task</td></tr></tbody></table></div>
+<p class="muted sources">Format references: <a href="https://code.visualstudio.com/docs/copilot/customization/custom-instructions" target="_blank" rel="noopener">VS Code instructions</a> · <a href="https://code.visualstudio.com/docs/copilot/customization/custom-agents" target="_blank" rel="noopener">Custom agents</a> · <a href="https://code.visualstudio.com/docs/copilot/customization/prompt-files" target="_blank" rel="noopener">Prompt files</a></p>
+<div class="grid"><div class="card"><h3>Suggested daily roles</h3><ul><li>Developer: implement a small change.</li><li>Investigator: reproduce and explain a failure.</li><li>Test specialist: add regression coverage.</li><li>Reviewer: flag correctness and compatibility risks.</li></ul></div><div class="card"><h3>Proposed repository structure</h3><pre>.github/
+├── copilot-instructions.md
+├── instructions/
+│   └── tests.instructions.md
+├── agents/
+│   ├── focused-developer.agent.md
+│   └── reviewer.agent.md
+└── prompts/
+    └── fix-bug.prompt.md</pre></div></div>
+<aside class="notes"><strong>Explain:</strong> “Don’t put everything into one giant file. Keep common rules shared, specific rules scoped, and repeatable tasks in prompt templates. These examples target VS Code; verify support and available tools in the IDE you’ll present from.”</aside>
+</section>
+<section class="slide" id="templates" hidden>
+<div class="tag">Copyable configuration</div><h2>Small, focused Markdown templates</h2><p class="muted">Copy a template or download it, then place it in the displayed repository path. These buttons download separate files; they do not modify your repository.</p>
+<div class="grid">
+<div class="card"><h3>Focused developer</h3><div class="file-label">.github/agents/focused-developer.agent.md</div><pre id="developer-code">---
+name: Focused Developer
+description: Implements a scoped change with regression tests.
+---
+You are a focused development assistant.
+
+- Start with the user's supplied files and acceptance criteria.
+- Inspect dependencies only when needed.
+- Make the smallest appropriate change.
+- Add or update regression tests.
+- Run relevant validation when available.
+- Do not refactor unrelated code or add dependencies without approval.
+- Ask before editing if requirements are unclear.
+- Stop when the requested task is complete.
+
+Report changes, actual validation, and remaining blockers.
+Never claim tests passed unless they ran successfully.</pre><div class="toolbar"><button data-copy="developer-code">Copy</button><button data-download="developer-code" data-filename="focused-developer.agent.md">Download</button></div><small>Configure editing and validation tools in your IDE; rehearse permissions before presenting.</small></div>
+<div class="card"><h3>Focused reviewer</h3><div class="file-label">.github/agents/reviewer.agent.md</div><pre id="reviewer-code">---
+name: Focused Reviewer
+description: Reviews supplied code for correctness and missing tests.
+tools: ["read", "search"]
+---
+Review the supplied files and changes.
+
+Focus on:
+- Incorrect behavior
+- Missing edge-case tests
+- Compatibility risks
+- Security-sensitive changes
+
+Do not edit files. Avoid unrelated style suggestions.
+
+For each finding, provide the location, problem,
+impact, and suggested correction.
+If no findings exist, state remaining validation gaps.</pre><div class="toolbar"><button data-copy="reviewer-code">Copy</button><button data-download="reviewer-code" data-filename="reviewer.agent.md">Download</button></div><small class="sources">Configuration reference: <a href="https://code.visualstudio.com/docs/copilot/customization/custom-agents" target="_blank" rel="noopener">VS Code custom agents</a>.</small></div>
+<div class="card"><h3>Shared rules</h3><div class="file-label">.github/copilot-instructions.md</div><pre id="instructions-code"># Project guidance
+
+- Follow existing project conventions.
+- Prefer minimal, task-focused changes.
+- Preserve public APIs unless the task requires a change.
+- Do not introduce dependencies without approval.
+- Add tests for changed behavior.
+- Never include credentials or secrets.
+- Report what was actually verified.</pre><div class="toolbar"><button data-copy="instructions-code">Copy</button><button data-download="instructions-code" data-filename="copilot-instructions.md">Download</button></div></div>
+<div class="card"><h3>Scoped test guidance</h3><div class="file-label">.github/instructions/tests.instructions.md</div><pre id="tests-code">---
+applyTo: "**/*.test.ts"
+---
+# Testing guidance
+
+- Use the project's existing test framework.
+- Cover the reported failure and relevant edge cases.
+- Keep tests deterministic.
+- Avoid unrelated test rewrites.</pre><div class="toolbar"><button data-copy="tests-code">Copy</button><button data-download="tests-code" data-filename="tests.instructions.md">Download</button></div></div>
+</div>
+<aside class="notes"><strong>Live IDE step:</strong> Add the templates to the demo repository. Select Focused Developer in Copilot Chat’s agent picker. Show the reviewer tool configuration and explain why a review-only role does not need editing permissions. These instructions guide behavior; do not present prose constraints as a guaranteed security boundary.</aside>
+</section>
+<section class="slide" id="playground" hidden>
+<div class="tag">Interactive application example</div><h2>Bug → fix → regression checks</h2><p class="lead">Demo requirement: a page size must be a positive integer. Invalid values must be rejected.</p>
+<div class="callout warning"><strong>Simulation only:</strong> Switching modes selects prewritten JavaScript implementations. Copilot is not generating or executing code inside this HTML file. Browser regression checks run only when you click the test button.</div>
+<div class="grid"><div class="card"><h3>Try the behavior</h3><div class="toolbar mode-buttons"><button id="buggy-mode" aria-pressed="true">Buggy mode</button><button id="fixed-mode" aria-pressed="false">Fixed mode</button></div><label for="page-size">Page size</label><input id="page-size" type="text" value="0" inputmode="decimal"><div class="toolbar"><button class="primary" id="validate">Validate input</button><button id="run-tests">Run regression checks</button></div><div id="validation-result" class="result" aria-live="polite">Enter a value and validate it.</div><div id="test-results" class="result" aria-live="polite">Regression checks have not been run.</div><p class="muted">Try a positive integer, zero, a negative value, a fraction, blank input, or text.</p></div>
+<div class="card"><h3>Implementation in the selected mode</h3><pre id="implementation-code">function validatePageSize(raw) {
+  const value = Number(raw);
+  // BUG: numeric conversion is not validation.
+  return { ok: true, value };
+}</pre><div class="toolbar"><button data-copy="implementation-code">Copy implementation</button></div><h3>Acceptance criteria</h3><ul><li>Accept positive integers.</li><li>Reject zero and negative values.</li><li>Reject fractions and non-numeric input.</li><li>Reject blank or whitespace-only input.</li></ul></div></div>
+<div class="card" style="margin-top:18px"><h3>Use this prompt in your actual IDE</h3><pre id="live-prompt">Fix validatePageSize in the attached implementation.
+
+Acceptance criteria:
+- Accept positive integers.
+- Reject zero, negative values, fractions, non-numeric input,
+  and blank or whitespace-only input.
+
+Scope:
+- This validation function and its regression tests.
+- No new dependencies or unrelated refactoring.
+- Preserve the existing result shape: { ok, value } or { ok, error }.
+
+Add regression tests and run relevant validation.
+Report what actually ran and any remaining uncertainty.</pre><div class="toolbar"><button data-copy="live-prompt">Copy IDE prompt</button></div></div>
+<aside class="notes"><strong>Demo script:</strong> In buggy mode, validate zero. Run checks to reveal failing cases. Open the actual demo repository and ask Copilot to implement the acceptance criteria. Review its diff and execute the repository’s tests. Return here and switch to Fixed mode to explain the proposed validation approach. The browser tests validate this browser implementation, not Copilot’s repository changes.</aside>
+</section>
+<section class="slide" id="prompts" hidden>
+<div class="tag">Efficient task design</div><h2>Broad exploration vs focused work</h2>
+<div class="grid"><div class="card"><h3>Broad baseline</h3><pre id="broad-prompt">Explore this project, fix the page-size bug,
+improve the code, add tests, and explain everything
+you changed.</pre><div class="toolbar"><button data-copy="broad-prompt">Copy baseline</button></div><p class="muted">Discussion: what does “improve” mean? Where should exploration stop? Which changes are in scope?</p></div><div class="card"><h3>Focused alternative</h3><pre id="focused-prompt">Work on the attached validation function and tests.
+
+Accept positive integer page sizes. Reject blank,
+non-numeric, fractional, zero, and negative input.
+
+Preserve the public result shape. No new dependencies.
+Inspect other files only when needed for compatibility.
+Add regression tests and run relevant validation.
+Stop after this task; summarize changes and validation.</pre><div class="toolbar"><button data-copy="focused-prompt">Copy focused prompt</button></div><p class="muted">Discussion: relevant context, observable behavior, bounded changes, and an explicit completion condition.</p></div></div>
+<div class="card" style="margin-top:18px"><h3>Reusable prompt file</h3><div class="file-label">.github/prompts/fix-bug.prompt.md</div><pre id="prompt-file">---
+description: Fix a scoped bug with regression tests.
+agent: agent
+---
+Fix the bug described by the user.
+
+- Identify expected behavior and relevant files.
+- Ask if acceptance criteria are unclear.
+- Reproduce the failure where practical.
+- Make a minimal fix and add regression tests.
+- Run relevant validation.
+- Avoid unrelated changes.
+
+Finish with changes, actual validation, and remaining risks.</pre><div class="toolbar"><button data-copy="prompt-file">Copy</button><button data-download="prompt-file" data-filename="fix-bug.prompt.md">Download</button></div><small class="sources">Invocation and format: <a href="https://code.visualstudio.com/docs/copilot/customization/prompt-files" target="_blank" rel="noopener">VS Code prompt files</a>.</small></div>
+<aside class="notes"><strong>Explain:</strong> “A focused prompt is not always shorter. It aims to reduce ambiguity and unnecessary exploration while preserving enough information to solve the task correctly. More specialized agents are not automatically cheaper; measure the complete workflow.”</aside>
+</section>
+<section class="slide" id="usage" hidden>
+<div class="tag">Observe before claiming savings</div><h2>Context efficiency & usage worksheet</h2>
+<div class="callout warning"><strong>Data completeness:</strong> All usage measurements are missing until you enter observed values. No estimates, automatic token counts, percentages, or cost calculations are provided. Text length is not presented as token usage.</div>
+<div class="grid"><div class="card"><h3>Recommendations to evaluate</h3><ul><li>Attach relevant implementation and test files.</li><li>Keep shared instructions concise; scope specialist rules.</li><li>Avoid irrelevant logs and unrelated exploration.</li><li>Request a concise final summary rather than full-file repetition.</li><li>Use a fresh chat for unrelated work, carrying essential context forward.</li><li>Restrict tools to what the role needs.</li><li>Set a clear stopping point and verify the outcome.</li></ul><small>These are workflow recommendations, not guaranteed savings.</small></div><div class="card"><h3>Fair comparison procedure</h3><ol><li>Restore the same repository state.</li><li>Use the same model and a fresh chat for each run.</li><li>Run broad and focused workflows separately.</li><li>Observe the entire task, including tool activity.</li><li>Verify correctness and regression results.</li><li>Record only usage fields actually exposed.</li></ol><p class="sources muted">Inspect requests and diagnostics with <a href="https://code.visualstudio.com/docs/copilot/troubleshooting" target="_blank" rel="noopener">VS Code troubleshooting / Chat Debug View</a>. Verify the interface and fields in your installed version.</p></div></div>
+<div class="card metric" style="margin-top:18px"><h3>Record actual observations</h3><p class="muted">Blank means missing. Enter “not available” if your environment does not expose a metric. Entries stay only in this page session unless exported.</p><div class="table-wrap"><table id="usage-table"><thead><tr><th>Measure</th><th>Broad workflow</th><th>Focused workflow</th></tr></thead><tbody><tr><td>Model / environment</td><td><input aria-label="Broad model and environment" placeholder="Not recorded"></td><td><input aria-label="Focused model and environment" placeholder="Not recorded"></td></tr><tr><td>Observed input tokens</td><td><input aria-label="Broad input tokens" placeholder="Missing / not available"></td><td><input aria-label="Focused input tokens" placeholder="Missing / not available"></td></tr><tr><td>Observed output tokens</td><td><input aria-label="Broad output tokens" placeholder="Missing / not available"></td><td><input aria-label="Focused output tokens" placeholder="Missing / not available"></td></tr><tr><td>Observed tool calls / files inspected</td><td><input aria-label="Broad tool activity" placeholder="Not recorded"></td><td><input aria-label="Focused tool activity" placeholder="Not recorded"></td></tr><tr><td>Unrelated edits</td><td><input aria-label="Broad unrelated edits" placeholder="Not recorded"></td><td><input aria-label="Focused unrelated edits" placeholder="Not recorded"></td></tr><tr><td>Actual regression results</td><td><input aria-label="Broad regression results" placeholder="Not verified"></td><td><input aria-label="Focused regression results" placeholder="Not verified"></td></tr><tr><td>Observed account usage / billing</td><td><input aria-label="Broad billing usage" placeholder="Missing / not available"></td><td><input aria-label="Focused billing usage" placeholder="Missing / not available"></td></tr></tbody></table></div><div class="toolbar"><button id="export-usage">Export observations as JSON</button></div></div>
+<p class="sources muted"><strong>Billing caution:</strong> Confirm your account’s billing terms before equating token reduction with cost reduction. <a href="https://docs.github.com/billing/managing-billing-for-github-copilot/about-github-copilot-billing" target="_blank" rel="noopener">GitHub Copilot billing documentation</a>.</p>
+<aside class="notes"><strong>Explain:</strong> “These fields start empty intentionally. A smaller prompt alone does not prove lower end-to-end usage. We need actual measurements and a correct result. If token metrics aren’t exposed, we can discuss observed files, tool activity, and unrelated changes without inventing token numbers.”</aside>
+</section>
+<section class="slide" id="wrap" hidden>
+<div class="tag">Closing & references</div><h2>Make the workflow repeatable.</h2><div class="cards"><div class="card"><h3>Role</h3><p>Use a focused agent with appropriate capabilities.</p></div><div class="card"><h3>Scope</h3><p>Provide relevant files and unambiguous acceptance criteria.</p></div><div class="card"><h3>Evidence</h3><p>Review the diff, run tests, and record actual usage.</p></div></div>
+<div class="callout"><strong>Closing line:</strong> “The goal is not the smallest prompt. It is the least unnecessary work needed to produce a correct, reviewable change.”</div>
+<div class="grid"><div class="card"><h3>Before presenting</h3><ul><li>Open this HTML locally in a browser.</li><li>Rehearse the actual Copilot workflow in your IDE.</li><li>Prepare a small repository with working tests.</li><li>Verify custom-agent discovery and permissions.</li><li>Use non-sensitive code and logs.</li><li>Prepare a known-good diff as a fallback.</li></ul></div><div class="card sources"><h3>Official documentation</h3><ul><li><a href="https://code.visualstudio.com/docs/copilot/customization/custom-agents" target="_blank" rel="noopener">VS Code: Custom agents</a></li><li><a href="https://code.visualstudio.com/docs/copilot/customization/custom-instructions" target="_blank" rel="noopener">VS Code: Custom instructions</a></li><li><a href="https://code.visualstudio.com/docs/copilot/customization/prompt-files" target="_blank" rel="noopener">VS Code: Prompt files</a></li><li><a href="https://code.visualstudio.com/docs/copilot/troubleshooting" target="_blank" rel="noopener">VS Code: Troubleshooting and diagnostics</a></li><li><a href="https://docs.github.com/billing/managing-billing-for-github-copilot/about-github-copilot-billing" target="_blank" rel="noopener">GitHub: Copilot billing</a></li></ul><small>Customization formats are based on the documentation retrieved for this discussion. Interface details and plan terms should be verified before presenting.</small></div></div>
+<aside class="notes"><strong>Audience question:</strong> “Which repetitive task would you turn into a focused agent first: bug fixes, test writing, or reviews?” Ask for feedback on whether the demonstration makes the distinction between roles, rules, tasks, and actual usage clear.</aside>
+</section>
+</main>
+<footer><button id="previous">← Previous</button><div class="status" id="section-status" aria-live="polite">Start • Arrow keys navigate outside input fields</div><button id="next" class="primary">Next →</button></footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>
+'use strict';
+const slides=[...document.querySelectorAll('.slide')];
+const navButtons=[...document.querySelectorAll('nav button')];
+let active=document.getElementById('intro');
+function showSlide(id){const target=document.getElementById(id);if(!target||!target.classList.contains('slide'))return;slides.forEach(s=>s.hidden=s!==target);active=target;navButtons.forEach(b=>{if(b.dataset.target===id)b.setAttribute('aria-current','step');else b.removeAttribute('aria-current')});const current=navButtons.find(b=>b.dataset.target===id);document.getElementById('section-status').textContent=current.textContent+' • Arrow keys navigate outside input fields';document.getElementById('previous').disabled=!active.previousElementSibling;document.getElementById('next').disabled=!active.nextElementSibling;window.scrollTo({top:0,behavior:'smooth'})}
+navButtons.forEach(b=>b.addEventListener('click',()=>showSlide(b.dataset.target)));
+document.getElementById('previous').addEventListener('click',()=>{if(active.previousElementSibling)showSlide(active.previousElementSibling.id)});
+document.getElementById('next').addEventListener('click',()=>{if(active.nextElementSibling)showSlide(active.nextElementSibling.id)});
+document.addEventListener('keydown',e=>{if(['INPUT','TEXTAREA','SELECT','BUTTON'].includes(e.target.tagName)||e.ctrlKey||e.metaKey||e.altKey)return;if(e.key==='ArrowRight'){e.preventDefault();document.getElementById('next').click()}if(e.key==='ArrowLeft'){e.preventDefault();document.getElementById('previous').click()}});
+document.getElementById('notes-toggle').addEventListener('click',e=>{const showing=document.body.classList.toggle('show-notes');e.currentTarget.setAttribute('aria-pressed',String(showing));e.currentTarget.textContent=showing?'Hide speaker notes':'Show speaker notes'});
+document.getElementById('print').addEventListener('click',()=>window.print());
+let toastTimer;function notify(text){const t=document.getElementById('toast');t.textContent=text;clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.textContent='',3500)}
+async function copyText(id){const element=document.getElementById(id);try{if(!navigator.clipboard)throw new Error('Clipboard unavailable');await navigator.clipboard.writeText(element.textContent);notify('Copied to clipboard')}catch(error){const range=document.createRange();range.selectNodeContents(element);const selection=window.getSelection();selection.removeAllRanges();selection.addRange(range);notify('Clipboard unavailable: text selected. Use your copy shortcut.')}}
+document.querySelectorAll('[data-copy]').forEach(b=>b.addEventListener('click',()=>copyText(b.dataset.copy)));
+function download(text,name,type){const blob=new Blob([text],{type});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000)}
+document.querySelectorAll('[data-download]').forEach(b=>b.addEventListener('click',()=>{download(document.getElementById(b.dataset.download).textContent+'\n',b.dataset.filename,'text/markdown;charset=utf-8');notify('Template downloaded; place it in the displayed repository path.')}));
+const buggySource=`function validatePageSize(raw) {
+  const value = Number(raw);
+  // BUG: numeric conversion is not validation.
+  return { ok: true, value };
+}`;
+const fixedSource=`function validatePageSize(raw) {
+  const text = String(raw).trim();
+  const value = Number(text);
+  if (text === '' || !Number.isInteger(value) || value <= 0) {
+    return { ok: false, error: 'Page size must be a positive integer.' };
+  }
+  return { ok: true, value };
+}`;
+function buggyValidate(raw){const value=Number(raw);return {ok:true,value}}
+function fixedValidate(raw){const text=String(raw).trim();const value=Number(text);if(text===''||!Number.isInteger(value)||value<=0)return {ok:false,error:'Page size must be a positive integer.'};return {ok:true,value}}
+let fixed=false;
+function mode(useFixed){fixed=useFixed;document.getElementById('buggy-mode').setAttribute('aria-pressed',String(!fixed));document.getElementById('fixed-mode').setAttribute('aria-pressed',String(fixed));document.getElementById('implementation-code').textContent=fixed?fixedSource:buggySource;const result=document.getElementById('validation-result');result.className='result';result.textContent='Mode changed. Validate an input to observe behavior.';document.getElementById('test-results').textContent='Regression checks have not been run in this mode.'}
+document.getElementById('buggy-mode').addEventListener('click',()=>mode(false));document.getElementById('fixed-mode').addEventListener('click',()=>mode(true));
+document.getElementById('validate').addEventListener('click',()=>{const validator=fixed?fixedValidate:buggyValidate;const outcome=validator(document.getElementById('page-size').value);const box=document.getElementById('validation-result');box.className='result';box.textContent=outcome.ok?'Accepted: '+String(outcome.value):'Rejected: '+outcome.error});
+const cases=[{label:'Positive integer',input:'10',expected:true},{label:'Zero',input:'0',expected:false},{label:'Negative value',input:'-1',expected:false},{label:'Fraction',input:'1.5',expected:false},{label:'Non-numeric text',input:'hello',expected:false},{label:'Blank input',input:'',expected:false},{label:'Whitespace only',input:'   ',expected:false}];
+document.getElementById('run-tests').addEventListener('click',()=>{const validator=fixed?fixedValidate:buggyValidate;const box=document.getElementById('test-results');box.replaceChildren();const heading=document.createElement('strong');heading.textContent='Actual browser checks — '+(fixed?'fixed':'buggy')+' implementation';box.appendChild(heading);const list=document.createElement('ul');cases.forEach(test=>{const outcome=validator(test.input);const passed=outcome.ok===test.expected;const item=document.createElement('li');item.className=passed?'pass':'fail';item.textContent=(passed?'PASS':'FAIL')+' — '+test.label+' (expected '+(test.expected?'accept':'reject')+', observed '+(outcome.ok?'accept':'reject')+')';list.appendChild(item)});box.appendChild(list)});
+document.getElementById('export-usage').addEventListener('click',()=>{const observations=[...document.querySelectorAll('#usage-table tbody tr')].map(row=>{const inputs=row.querySelectorAll('input');return {measure:row.querySelector('td').textContent,broad:inputs[0].value.trim()||null,focused:inputs[1].value.trim()||null}});download(JSON.stringify({note:'User-entered observations; not independently verified. Null means missing. No estimates or calculations.',observations},null,2),'copilot-usage-observations.json','application/json');notify('Observations exported. Missing entries are null.')});
+showSlide('intro');
+</script>
+</body>
+</html>
